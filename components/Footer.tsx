@@ -42,7 +42,8 @@ export const FooterImpl: React.FC = () => {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            gap: '16px'
           }}
         >
           <div>Copyright {currentYear} {config.author}</div>
