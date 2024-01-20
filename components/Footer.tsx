@@ -39,6 +39,8 @@ export const FooterImpl: React.FC = () => {
       <div className={styles.copyright}>
         <div
           style={{
+            display: 'flex',
+            flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center'
           }}
