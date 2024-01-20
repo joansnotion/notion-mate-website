@@ -36,7 +36,22 @@ export const FooterImpl: React.FC = () => {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.copyright}>Copyright {currentYear} {config.author}</div>
+      <div className={styles.copyright}>
+        <div
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <a href='https://hits.seeyoufarm.com'>
+            <img
+              style={{ display: 'block', margin: '0px auto' }}
+              src='https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fnotionmate.top&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true'
+            />
+          </a>
+          <div>Copyright {currentYear} {config.author}</div>
+        </div>
+      </div>
 
       <div className={styles.settings}>
         {hasMounted && (
