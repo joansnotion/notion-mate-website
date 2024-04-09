@@ -42,8 +42,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
     (function () {
       const s = document.createElement('script');
-      s.src = 'https://kodepay-global.zingfront.com/common/kodepay-website.js'
+      s.crossOrigin = 'anonymous';
       s.async = true; // 1
+      s.src = 'https://kodepay-global.zingfront.com/common/kodepay-website.js';
       document.head.appendChild(s);
     })();
 

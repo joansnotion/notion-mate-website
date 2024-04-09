@@ -43,9 +43,7 @@ export const NotionPageHeader: React.FC<{
   }
 
   const openPay = () => {
-    console.log('click open pay');
     if ((window as any).KodePay) {
-      console.log('KodePay is ready');
       let plan_id = "prod_15d0256464a84f07";
 
       document.body.style.overflow = "hidden";
