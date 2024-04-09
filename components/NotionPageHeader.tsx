@@ -38,9 +38,115 @@ export const NotionPageHeader: React.FC<{
 }> = ({ block }) => {
   const { components, mapPageUrl } = useNotionContext()
 
-  if (navigationStyle === 'default') {
-    return <Header block={block} />
-  }
+  const openPay = () => {
+    if ((window as any).KodePay) {
+      let plan_id = "prod_15d0256464a84f07";
+
+      // 设置body的overflow为hidden
+      document.body.style.overflow = "hidden";
+
+      // 使用js创建一个弹窗选择支付是usd还是cny，动态创建一个html页面
+      const divUI = document.createElement("div");
+
+      const modelStyle = `
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      overflow-y:hidden;
+      z-index: 999998;
+      `;
+
+      const mcontentStyle = `
+      width: 340px;
+      height: 220px;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      z-index: 999999;
+      `;
+      divUI.innerHTML = `
+        <div id="kodepay-modal" class="kodepay-modal" style="${modelStyle}">
+          <div class="kodepay-modal-content" style="${mcontentStyle}">
+            <h4>Type of currency</h4>
+            <div style="display: flex;gap: 4px;margin-bottom: 6px;">
+              <input id="discountcode" type="text" placeholder="Enter discount code" /
+              style="height: 32px;">
+            </div>
+            
+            <div style="display: flex;gap: 16px;align-items: center;justify-content: center;" class="notion-header">
+              <button id="kodepayusd" class="breadcrumb button">&nbsp;&nbsp;&nbsp;&nbsp;USD&nbsp;&nbsp;&nbsp;&nbsp;</button>
+              <button id="kodepaycny" class="breadcrumb button">&nbsp;&nbsp;&nbsp;&nbsp;CNY&nbsp;&nbsp;&nbsp;&nbsp;</button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const calcHash = (s) => {
+        let hash = 0, i, chr;
+        if (s.length === 0) return hash;
+        for (i = 0; i < s.length; i++) {
+          chr = s.charCodeAt(i);
+          hash = ((hash << 5) - hash) + chr;
+          hash |= 0; // Convert to 32bit integer
+        }
+        return hash;
+      }
+
+      // 设置点击外部删除弹窗
+      divUI.onclick = function (e) {
+        // 获取discountcode
+        const discountcode = (divUI.children[0].children[0].children[1].children[0] as HTMLInputElement).value;
+        if (calcHash(discountcode) === 218557712) {
+          plan_id = "prod_085484b177ea4328";
+        }
+
+        if (e.target === divUI.children[0]) {
+          // 删除
+          document.body.style.overflow = "auto";
+          divUI.remove();
+        } else if (e.target === divUI.children[0].children[0].children[2].children[0]) {
+          // 点击usd按钮
+
+          // 删除
+          document.body.style.overflow = "auto";
+          divUI.remove();
+
+          window['KodePay'].open_payment_choose_page(plan_id, 'usd').then((res: any) => {
+            console.log(res);
+          });
+        } else if (e.target === divUI.children[0].children[0].children[2].children[1]) {
+          // 点击cny按钮
+
+          // 删除
+          document.body.style.overflow = "auto";
+          divUI.remove();
+
+          if (calcHash(discountcode) === 218557712) {
+            plan_id = "prod_085484b177ea4328";
+          }
+
+          window['KodePay'].open_payment_choose_page(plan_id, 'cny').then((res: any) => {
+            console.log(res);
+          });
+        }
+      };
+
+      document.body.appendChild(divUI);
+
+    }
+  };
+
+
 
   return (
     <header className='notion-header'>
@@ -77,6 +183,12 @@ export const NotionPageHeader: React.FC<{
               }
             })
             .filter(Boolean)}
+
+          <div
+            onClick={openPay}
+            className={cs(styles.navLink, 'breadcrumb', 'button')}>
+            Subscribe
+          </div>
 
           <ToggleThemeButton />
 

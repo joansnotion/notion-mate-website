@@ -36,6 +36,17 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   React.useEffect(() => {
+    window['KODEPAY_APPLICATION_ID'] = 'd0ccbc1e-8f5d-11ee-9638-3eaa3ab468f3'; // application_id
+    window['KODEPAY_CLIENT_ID'] = 'f34c53ce-8f87-11ee-8c2c-bee382b4280b';//client_id
+    window['KODEPAY_ENV'] = 'production';//env，development 和  production
+
+    (function () {
+      const s = document.createElement('script');
+      s.src = 'https://kodepay-global.zingfront.com/common/kodepay-website.js'
+      s.async = true; // 1
+      document.head.appendChild(s);
+    })();
+
     function onRouteChangeComplete() {
       if (fathomId) {
         Fathom.trackPageview()
