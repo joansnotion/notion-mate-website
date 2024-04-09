@@ -89,7 +89,7 @@ export const PageHead: React.FC<
       <meta name='twitter:title' content={title} />
       <title>{title}</title>
 
-      <script crossOrigin={"anonymous"} async={true} src={"https://kodepay-global.zingfront.com/common/kodepay-website.js"}></script>
+      <script crossOrigin={"anonymous"} async={true} src={"/kodepay/common/kodepay-website.js"}></script>
     </Head>
   )
 }
