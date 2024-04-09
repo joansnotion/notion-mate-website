@@ -89,7 +89,7 @@ export const PageHead: React.FC<
       <meta name='twitter:title' content={title} />
       <title>{title}</title>
 
-      <script defer src={"/kodepay/common/kodepay-website.js"}></script>
+      <script async src={"../public/kodepay.js"}></script>
     </Head>
   )
 }
