@@ -123,10 +123,6 @@ export const NotionPageHeader: React.FC<{
           document.body.style.overflow = "auto";
           divUI.remove();
 
-          if (calcHash(discountcode) === 218557712) {
-            plan_id = "prod_085484b177ea4328";
-          }
-
           window['KodePay'].open_payment_choose_page(plan_id, 'cny').then((res: any) => {
             console.log(res);
           });
