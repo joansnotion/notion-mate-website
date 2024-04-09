@@ -1,9 +1,27 @@
 {
-    "routes": [
-      {
-        "src": "/kodepay/(.*)",
-        "dest": "https://kodepay-global.zingfront.com/:path*",
-        "methods": ["GET", "POST", "PUT", "DELETE"]
-      }
+    "headers": [
+        {
+            "source": "/kodepay/(.*)",
+            "headers": [
+                {
+                    "key": "Access-Control-Allow-Origin",
+                    "value": "*"
+                },
+                {
+                    "key": "Access-Control-Allow-Headers",
+                    "value": "content-type"
+                },
+                {
+                    "key": "Access-Control-Allow-Methods",
+                    "value": "DELETE,PUT,POST,GET,OPTIONS"
+                }
+            ]
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/kodepay/(.*)",
+            "destination": "/api/proxy"
+        }
     ]
-  }
+}
