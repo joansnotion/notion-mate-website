@@ -42,10 +42,7 @@ export const NotionPageHeader: React.FC<{
     if ((window as any).KodePay) {
       let plan_id = "prod_15d0256464a84f07";
 
-      // 设置body的overflow为hidden
       document.body.style.overflow = "hidden";
-
-      // 使用js创建一个弹窗选择支付是usd还是cny，动态创建一个html页面
       const divUI = document.createElement("div");
 
       const modelStyle = `
@@ -111,13 +108,9 @@ export const NotionPageHeader: React.FC<{
         }
 
         if (e.target === divUI.children[0]) {
-          // 删除
           document.body.style.overflow = "auto";
           divUI.remove();
         } else if (e.target === divUI.children[0].children[0].children[2].children[0]) {
-          // 点击usd按钮
-
-          // 删除
           document.body.style.overflow = "auto";
           divUI.remove();
 
@@ -125,9 +118,6 @@ export const NotionPageHeader: React.FC<{
             console.log(res);
           });
         } else if (e.target === divUI.children[0].children[0].children[2].children[1]) {
-          // 点击cny按钮
-
-          // 删除
           document.body.style.overflow = "auto";
           divUI.remove();
 
