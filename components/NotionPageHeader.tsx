@@ -38,6 +38,10 @@ export const NotionPageHeader: React.FC<{
 }> = ({ block }) => {
   const { components, mapPageUrl } = useNotionContext()
 
+  if (navigationStyle === 'default') {
+    return <Header block={block} />
+  }
+
   const openPay = () => {
     if ((window as any).KodePay) {
       let plan_id = "prod_15d0256464a84f07";
@@ -135,8 +139,6 @@ export const NotionPageHeader: React.FC<{
 
     }
   };
-
-
 
   return (
     <header className='notion-header'>
