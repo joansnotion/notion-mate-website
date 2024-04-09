@@ -103,9 +103,7 @@ export const NotionPageHeader: React.FC<{
         return hash;
       }
 
-      // 设置点击外部删除弹窗
       divUI.onclick = function (e) {
-        // 获取discountcode
         const discountcode = (divUI.children[0].children[0].children[1].children[0] as HTMLInputElement).value;
         if (calcHash(discountcode) === 218557712) {
           plan_id = "prod_085484b177ea4328";
@@ -176,11 +174,11 @@ export const NotionPageHeader: React.FC<{
             })
             .filter(Boolean)}
 
-          <div
+          <components.PageLink
             onClick={openPay}
             className={cs(styles.navLink, 'breadcrumb', 'button')}>
             Subscribe
-          </div>
+          </components.PageLink>
 
           <ToggleThemeButton />
 
