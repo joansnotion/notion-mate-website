@@ -43,7 +43,9 @@ export const NotionPageHeader: React.FC<{
   }
 
   const openPay = () => {
+    console.log('click open pay');
     if ((window as any).KodePay) {
+      console.log('KodePay is ready');
       let plan_id = "prod_15d0256464a84f07";
 
       document.body.style.overflow = "hidden";
@@ -174,11 +176,11 @@ export const NotionPageHeader: React.FC<{
             })
             .filter(Boolean)}
 
-          <components.PageLink
-            onClick={openPay}
+          <div
+            onClick={openPay} 
             className={cs(styles.navLink, 'breadcrumb', 'button')}>
             Subscribe
-          </components.PageLink>
+          </div>
 
           <ToggleThemeButton />
 
