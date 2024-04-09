@@ -1,5 +1,5 @@
 {
-    "rewrites": [ //寻找/api下的文件 然后可以在/api/proxy文件中进行跨域处理
+    "rewrites": [
         {
             "source": "/kodepay/(.*)",
             "destination": "/api/proxy"
