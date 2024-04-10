@@ -17,7 +17,7 @@ export default siteConfig({
   description: 'Chrome and Edge browser extensions make your Notion more efficient and enhance your experience.',
 
   // social usernames (optional)
-  twitter: '',
+  twitter: 'https://twitter.com/joansnotion',
   github: '',
   linkedin: '',
   // mastodon: '#', // optional mastodon profile URL, provides link verification
